@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 
 from ultralytics.nn.modules import (C1, C2, C3, C3TR, SPP, SPPF1,SPPF,SimSPPF,SimCSPSPPF,CSPSPPF, SE,SimAM,Bottleneck, BottleneckCSP, C2f,C2f_CABM,C2f_rep,CBAM,CBAM_2,ECA,space_to_depth, C3Ghost, C3x, Classify,
-                                    Concat, Conv, ConvTranspose, Detect, DWConv, DWConvTranspose2d, Ensemble, Focus,RepBottleneck,RepC3,RepC2f,RepConv,GhostC2f,
+                                    Concat, Conv, ConvTranspose, Detect, DWConv, DWConvTranspose2d, Ensemble, Focus,RepBottleneck,RepC3,RepC2f,RepConv,GhostC2f,Bi,
                                     GhostBottleneck, GhostConv, Segment)
 from ultralytics.yolo.utils import DEFAULT_CONFIG_DICT, DEFAULT_CONFIG_KEYS, LOGGER, colorstr, yaml_load
 from ultralytics.yolo.utils.checks import check_yaml
