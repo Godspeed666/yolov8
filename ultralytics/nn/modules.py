@@ -1134,6 +1134,7 @@ class CSPSPPF_new(nn.Module):
         self.cv2 = Conv(in_channels, c_, 1, 1)
         self.cv3 = Conv(c_, c_, 3, 1)
         self.m1 = Bottleneck(c_, c_, shortcut, g, k=(3, 3), e=1.0) 
+        self.m2 = Bottleneck(c_, c_, shortcut, g, k=(3, 3), e=1.0) 
         self.cv4 = Conv(c_, c_, 1, 1)
         
         self.m = nn.MaxPool2d(kernel_size=kernel_size, stride=1, padding=kernel_size // 2)
@@ -1142,7 +1143,7 @@ class CSPSPPF_new(nn.Module):
         self.cv7 = Conv(2 * c_, out_channels, 1, 1)
 
     def forward(self, x):
-        x1 = self.cv4(self.m1(self.m1(self.cv1(x))))
+        x1 = self.cv4(self.m2(self.m1(self.cv1(x))))
         y0 = self.cv2(x)
         with warnings.catch_warnings():
             warnings.simplefilter('ignore')
