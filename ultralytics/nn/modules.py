@@ -1127,13 +1127,13 @@ class GhostC2f(nn.Module):
     
 class CSPSPPF_new(nn.Module):
     # CSP https://github.com/WongKinYiu/CrossStagePartialNetworks
-    def __init__(self, in_channels, out_channels, kernel_size=5, e=0.5,g=1,shortcut=True,n=1):
+    def __init__(self, in_channels, out_channels, kernel_size=5, e=0.5,g=1,shortcut=True):
         super(CSPSPPF_new, self).__init__()
         c_ = int(out_channels * e)  # hidden channels
         self.cv1 = Conv(in_channels, c_, 1, 1)
         self.cv2 = Conv(in_channels, c_, 1, 1)
         self.cv3 = Conv(c_, c_, 3, 1)
-        self.m1 = nn.ModuleList(Bottleneck(self.c, self.c, shortcut, g, k=(3, 3), e=1.0) for _ in range(n))
+        self.m1 = Bottleneck(c_, c_, shortcut, g, k=(3, 3), e=1.0) 
         self.cv4 = Conv(c_, c_, 1, 1)
         
         self.m = nn.MaxPool2d(kernel_size=kernel_size, stride=1, padding=kernel_size // 2)
