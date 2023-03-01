@@ -1259,7 +1259,7 @@ class BoT3(nn.Module):
 #         self.cv2 = Conv(c1, c_, 1, 1)
 #         self.cv3 = Conv(2 * c_, c2, 1)  # act=FReLU(c2)
 
-        self.m = nn.Sequential(*[BottleneckTransformer(c_ ,c_, stride=1, heads=4,mhsa=True,resolution=(w,h),expansion=e2) for _ in range(n)])
+        self.m = nn.Sequential(*[BottleneckTransformer(self.c ,self.c, stride=1, heads=4,mhsa=True,resolution=(w,h),expansion=e2) for _ in range(n)])
     
         # self.m = nn.Sequential(*[CrossConv(c_, c_, 3, 1, g, 1.0, shortcut) for _ in range(n)])
 
