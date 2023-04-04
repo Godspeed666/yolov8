@@ -57,15 +57,23 @@ class BboxLoss(nn.Module):
         self.reg_max = reg_max
         self.use_dfl = use_dfl
 
+
     def forward(self, pred_dist, pred_bboxes, anchor_points, target_bboxes, target_scores, target_scores_sum, fg_mask):
         # IoU loss
         weight = torch.masked_select(target_scores.sum(-1), fg_mask).unsqueeze(-1)
         iou = bbox_iou(pred_bboxes[fg_mask], target_bboxes[fg_mask], xywh=False, CIoU=True)
 #         loss_iou = ((1.0 - iou) * weight).sum() / target_scores_sum
         
+#         loss_iou = torch.zeros(1, device=pred_dist.device)  # box loss
+    
         nwd_ratio = 0.5  # 平衡nwd和原始iou的权重 
         nwd = wasserstein_loss(pred_bboxes[fg_mask], target_bboxes[fg_mask]).squeeze()
-        loss_iou += (1 - nwd_ratio) * (1.0 - nwd).mean() + nwd_ratio * (1.0 - iou).mean()  # iou loss
+        if 'loss_iou' in locals():
+            loss_iou += (1 - nwd_ratio) * (1.0 - nwd).mean() + nwd_ratio * (1.0 - iou).mean()  # iou loss
+        else:
+            loss_iou = (1 - nwd_ratio) * (1.0 - nwd).mean() + nwd_ratio * (1.0 - iou).mean()  # iou loss
+
+
 
 
         
