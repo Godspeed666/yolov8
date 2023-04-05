@@ -1143,7 +1143,7 @@ class CSPSPPF_new(nn.Module):
         self.cv7 = Conv(2 * c_, out_channels, 1, 1)
 
     def forward(self, x):
-        x1 = self.cv4(self.m2(self.m1(self.cv1(x))))
+        x1 = self.cv4(self.m1(self.cv1(x)))
         y0 = self.cv2(x)
         with warnings.catch_warnings():
             warnings.simplefilter('ignore')
