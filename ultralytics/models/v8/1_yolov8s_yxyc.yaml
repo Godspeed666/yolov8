@@ -1,13 +1,21 @@
 # Ultralytics YOLO 🚀, GPL-3.0 license
 
-# My Change:
-#  1. SPPF-->SimSPPF 
-#  2. 
+# # My Change:
+# #  1. SPPF-->SimSPPF 
+# #  2. 
+
+# # Parameters
+# nc: 1  # number of classes
+# depth_multiple: 0.33  # scales module repeats
+# width_multiple: 0.25  # scales convolution channels
+
+
+# Ultralytics YOLO 🚀, GPL-3.0 license
 
 # Parameters
 nc: 1  # number of classes
 depth_multiple: 0.33  # scales module repeats
-width_multiple: 0.25  # scales convolution channels
+width_multiple: 0.50  # scales convolution channels
 
 # YOLOv8.0n backbone
 backbone:
